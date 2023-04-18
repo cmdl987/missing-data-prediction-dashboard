@@ -37,6 +37,7 @@ class ProphetModel:
   """
   def __init__(self, main_df):
     self.main_df = self.rename_features(main_df)
+    self.create_folders()
     self.p_best_params = str(my_path)+parser.get("path_folder", "best_params")
     self.p_regrs_coef_path = str(my_path)+parser.get("path_folder", "regressors_coef")
     self.p_model_file = str(my_path)+parser.get("path_folder", "model_file")
@@ -44,6 +45,24 @@ class ProphetModel:
     self.perf_metrics = str(my_path)+parser.get("path_folder", "perf_metrics")
     self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
     
+  @staticmethod
+  def create_folders():
+    """
+    This method creates all the the folders in /prophet_folder
+    where the different files will be saved.
+    """
+    config_value_list = ["regressors_coef", "best_params", 
+                          "model_file", "perf_metrics", "saved_figures"]
+    for value in config_value_list:
+      value_path = parser.get("path_folder", value)
+      value_path_folder = Path(value_path).parents[0]
+      final_path = str(my_path)+str(value_path_folder)
+      try: 
+        Path.mkdir(Path(final_path), parents=False, exist_ok=False)
+        print(f"folder {value_path_folder} has been created.")
+      except FileExistsError:
+        pass 
+
 
   def rename_features(self, main_df):
     """
