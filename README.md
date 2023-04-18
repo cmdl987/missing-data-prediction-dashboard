@@ -192,7 +192,6 @@ Como cada vehículo puede tener un comportamiento diferente ante los cambios de 
 | **regrs_coef_<matrícula>.txt** | dash_folder/regressors_coef | Identifica los regresores empleados y sus valores estadísticos. |
 | **figure_<matrícula>.png** | dash_folder/saved_figures | Imagen con los resultados estadísticos del modelo entrenado con los mejores parámetros seleccionados. |
 
-Results with the figure and the statistical data after trainning the model with the best parameters
 
 *Todas estas rutas relativas pueden ser reemplazadas cambiando los parámetros del archivo **config.ini**. 
 
