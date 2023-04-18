@@ -105,9 +105,9 @@ class ProcessingData:
         df["date"] = pd.to_datetime(df["date"]).dt.tz_localize(None)
 
         # Generate extra attributes          
-        df["day_of_week"] = df["date"].dt.day_name() # do we use this attribute? 
+        df["day_of_week"] = df["date"].dt.day_name() 
         df["interval_time"] = df["date"].diff()
-        df["hour"] = df["date"].dt.hour         # do we use this attribute?  
+        df["hour"] = df["date"].dt.hour          
         df["ignition"] = df["ignition"].map({"t":1, "f":0})
         new_df = self.generate_df(df)
         df["interval_time"] = df["interval_time"].dt.total_seconds()
@@ -200,8 +200,8 @@ class ProcessingData:
                                                  self.default_interval), 
                                                  columns=columns)
         
-        # Generates new attribute to be used as a regressor 
-        new_df["day_of_week"] = new_df["date"].dt.day_name()        # do we use this attribute?
-        new_df["date"] = new_df['date'].astype('datetime64[s]')     # do we use this attribute?
+        # Generates new attribute capable of being used as regressors 
+        new_df["day_of_week"] = new_df["date"].dt.day_name()
+        new_df["date"] = new_df['date'].astype('datetime64[s]')     
 
         return new_df
